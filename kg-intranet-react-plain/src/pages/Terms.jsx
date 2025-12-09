@@ -1,1 +1,0 @@
-export default function Terms(){return <section className='page'><h1 className='page-title'>이용약관</h1><p className='page-desc'>샘플 문구. 실제 약관은 추후 교체합니다.</p><div className='card'><p>이 서비스는 사내 업무 효율 향상을 목적으로 합니다.</p></div></section>}

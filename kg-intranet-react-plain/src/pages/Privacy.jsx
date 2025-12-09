@@ -1,1 +1,0 @@
-export default function Privacy(){return <section className='page'><h1 className='page-title'>개인정보처리방침</h1><p className='page-desc'>샘플 문구. 실제 정책은 추후 교체합니다.</p><div className='card'><p>개인정보는 인증 및 서비스 제공에만 사용됩니다.</p></div></section>}
