@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+html, body {
+	height: 100%;
+	margin: 0;
+}
+
+.center-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	background-color: #ffffff; /* 원하면 배경색 설정 */
+}
+</style>
+<script type="text/javascript" th:inline="javascript">
+	window.onload = function() {
+		setTimeout(function() {
+			var result = /*[[${result}]]*/false;
+			if (result) {
+				alert("수정성공했습니다.");
+				location.href = "noticeList";
+			} else if (!result) {
+				alert("수정실패했습니다.");
+				history.back();
+			}
+		}, 100);
+	}
+</script>
+</head>
+<body>
+	<!-- <div class="container" style="width: 800px; margin: auto;">
+      <div th:replace="~{layouts/header.html}"></div> -->
+
+	<div class="center-container" onclick="location.href='index'">
+		<img src="/img/KG25.png" alt="KG25 로고" style="width: 400px;">
+	</div>
+	<!--</div>  -->
+</body>
+</html>

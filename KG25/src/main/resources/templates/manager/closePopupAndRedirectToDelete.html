@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Redirect</title>
+<script th:inline="javascript">
+	window.onload = function() {
+		if (!window.opener) {
+			window.close();
+			return;
+		}
+		window.opener.location.href = '/checkDelete';
+		window.close();
+	};
+</script>
+</head>
+<body></body>
+</html>

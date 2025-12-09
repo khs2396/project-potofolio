@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" th:inline="javascript">
+	function isDelete(button) {
+		const pdname = button.getAttribute("data-pdname");
+		const pg = button.getAttribute("data-pg");
+
+		if (confirm("정말로 삭제하시겠습니까?")) {
+			location.href = "productDelete?pg=" + pg + "&pdname="
+					+ encodeURIComponent(pdname);
+		}
+	}
+</script>
+<style type="text/css">
+table.table {
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table.table th, table.table td {
+	padding: 8px 12px;
+	text-align: center; /* 가로 중앙 정렬 */
+	vertical-align: middle; /* 세로 중앙 정렬 */
+	border: none; /* ← 테두리 없앰 */
+	background-color: transparent; /* 배경색도 제거 */
+}
+
+table.table thead {
+	background-color: #fddf83; /* table-warning 비슷하게 */
+}
+
+.logx {
+	color: black;
+	text-decoration: none;
+}
+
+.logx:hover {
+	color: blue;
+	text-decoration: underline;
+}
+
+.welcome-msg {
+	font-size: 10px;
+	margin: 0;
+	padding-top: 4px;
+	color: #555;
+}
+
+.menu-table {
+	background-color: #fffbea;
+	border-radius: 8px;
+	padding: 10px;
+	margin-bottom: 30px;
+}
+
+.menu-table td {
+	padding: 15px 10px;
+	text-align: center;
+	font-size: 14px;
+}
+
+.menu-link {
+	display: inline-block;
+	width: 100%;
+	padding: 10px;
+	border-radius: 6px;
+	background-color: #f8f9fa;
+	transition: all 0.3s ease;
+	color: #212529;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.menu-link:hover {
+	background-color: #ffd43b;
+	color: #000;
+	text-decoration: none;
+}
+
+.menu-link i {
+	margin-right: 6px;
+}
+
+.section-title {
+	font-weight: bold;
+	font-size: 16px;
+	margin-bottom: 10px;
+}
+
+.login {
+	background-color: #007BFF; /* 파란색 */
+	color: white; /* 글자색 흰색 */
+	border: none; /* 테두리 제거 */
+	padding: 10px 20px; /* 여백 */
+	border-radius: 5px; /* 모서리 둥글게 */
+	cursor: pointer; /* 커서 변경 */
+	transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.login:hover {
+	transform: scale(1.05); /* 살짝 커짐 */
+	background-color: #0056b3; /* 더 진한 파란색으로 변경 */
+}
+</style>
+</head>
+<body>
+	<div class="container" style="width: 800px; margin: auto;">
+		<div th:replace="~{layouts/header.html}"></div>
+
+
+		<!-- 💡 로그인 필요없는 메뉴 -->
+		<div class="menu-table">
+			<div class="section-title">🔓 일반 메뉴</div>
+			<table class="table mb-0">
+				<tr>
+					<td><th:block th:if="${session.managerId == null}">
+							<a href="loginForm" class="menu-link"> <i
+								class="fas fa-sign-in-alt"></i> 로그인
+							</a>
+						</th:block> <th:block th:if="${session.managerId != null}">
+							<a href="logout" class="menu-link"> <i
+								class="fas fa-sign-out-alt"></i> 로그아웃
+							</a>
+							<p class="welcome-msg mt-1 mb-0" style="font-size: 11px;">
+								<th:block th:if="${session.code > 0}">
+              관리자 [[${session.managerId}]]님 환영합니다.
+            </th:block>
+								<th:block th:if="${session.code == 0}">
+              회원 [[${session.managerId}]]님 환영합니다.
+            </th:block>
+							</p>
+						</th:block></td>
+					<td><a href="mapSearchForm" class="menu-link"> <i
+							class="fas fa-map-marker-alt"></i> 점포찾기
+					</a></td>
+					<td><a href="introduceForm" class="menu-link"> <i
+							class="fas fa-building"></i> 회사소개
+					</a></td>
+					<td><a href="noticeList" class="menu-link"> <i
+							class="fas fa-bullhorn"></i> 공지사항
+					</a></td>
+					<td><a href="helpForm" class="menu-link"> <i
+							class="fas fa-headset"></i> 고객센터
+					</a></td>
+				</tr>
+			</table>
+		</div>
+
+		<table class="table">
+			<tr>
+				<td rowspan="3"><img alt=""
+					th:src="|/storage/${product.image1}|" width="400"></td>
+				<td>상품명</td>
+				<td>[[${pdname}]]</td>
+			</tr>
+			<tr>
+				<td>카테고리</td>
+				<td>[[${product.cat}]]</td>
+			</tr>
+			<tr>
+				<td>가격</td>
+				<td>[[${product.price}]]</td>
+			</tr>
+			<tr>
+				<td colspan="3">
+					<input type="button" value="목록" class="login"
+						th:onclick="location.href='productList?pg=[[${pg}]]'"> 
+					<th:block th:if="${session.code>0}"> 	
+						<input type="button" value="수정" class="login"
+							th:onclick="|location.href=
+								'@{productModifyForm(pg=${pg},pdname=${pdname})}'|">
+						<input type="button" value="삭제" class="login"
+							th:attr="data-pdname=${pdname}, data-pg=${pg}"
+							onclick="isDelete(this)">
+					</th:block>	
+				</td>
+			</tr>
+		</table>
+
+		<div class="menu-table" style="background-color: #e3f7ff;">
+			<div class="section-title">🔐 로그인 후 이용 가능</div>
+			<table class="table mb-0">
+				<tr>
+					<td><a onclick="location.href='mypage'" class="menu-link">
+							<i class="fas fa-user-circle"></i> 마이페이지
+					</a></td>
+					<td><a onclick="location.href='shoppingBasketList'"
+						class="menu-link"> <i class="fas fa-shopping-cart"></i> 장바구니
+					</a></td>
+					<td><a onclick="location.href='productList'" class="menu-link">
+							<i class="fas fa-boxes"></i> 상품발주
+					</a></td>
+					<td><a onclick="location.href='orderingList'"
+						class="menu-link"> <i class="fas fa-clipboard-list"></i> 발주현황
+					</a></td>
+				</tr>
+			</table>
+		</div>
+		<div th:replace="~{layouts/footer.html}"></div>
+	</div>
+</body>
+</html>

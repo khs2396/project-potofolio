@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Redirect</title>
+<script type="text/javascript" th:inline="javascript">
+	// 부모창(원래 창)으로 데이터 전달 및 이동
+	window.onload = function() {
+		// JS 변수에 안전하게 할당 (문자열이니까 작은따옴표 포함)
+		var id = /*[[${manager.id}]]*/'';
+
+		if (!window.opener) {
+			alert("이 페이지는 직접 열 수 없습니다. 메인 화면에서 다시 시도해주세요.");
+			window.close();
+			return;
+		}
+
+		var form = window.opener.document.createElement('form');
+		form.method = 'POST';
+		form.action = '/managerModifyForm';
+
+		var input = document.createElement('input');
+		input.type = 'hidden';
+		input.name = 'id';
+		input.value = id;
+		form.appendChild(input);
+
+		window.opener.document.body.appendChild(form);
+		form.submit();
+		window.close();
+	};
+</script>
+</head>
+<body>
+</body>
+</html>

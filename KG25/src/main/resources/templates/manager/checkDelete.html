@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="/js/managerScript.js?v=9"></script>
+<style type="text/css">
+input[type="button"].btn {
+		background-color: #007BFF;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		border-radius: 4px;
+		font-size: 14px;
+		margin-right: 10px;
+	}
+
+input[type="button"].btn:hover {
+		transform: scale(1.05);
+		background-color: #0056b3; /* 좀 더 진한 파랑 */
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}
+	
+input[type="reset"].btn {
+		background-color: #007BFF;
+		color: white;
+		border: none;
+		padding: 10px 20px;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		border-radius: 4px;
+		font-size: 14px;
+		margin-right: 10px;
+	}
+
+input[type="reset"].btn:hover {
+		transform: scale(1.05);
+		background-color: #0056b3; /* 좀 더 진한 파랑 */
+		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+	}	
+</style>
+</head>
+<body>
+	<div th:replace="~{layouts/header.html}"></div>
+
+	<div>
+		<h3 align="center">회원탈퇴를 위해 한번더 비밀번호를 입력해주세요</h3>
+		<form action="delete" name="frm" method="post">
+			<input type="hidden" name="id" th:value="${id}">
+			<table class="table" style="width: 360px; margin: auto;">
+				<tr>
+					<td>비밀번호</td>
+					<td>
+						<input type="password" name="pw">
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="2" align="center" style="padding-top: 20px;">
+						<input class="btn" type="button" value="탈퇴하기" onclick="checkPw()">
+						<input class="btn" type="reset" value="다시 입력">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	
+	<div th:replace="~{layouts/footer.html}"></div>
+</body>
+</html>

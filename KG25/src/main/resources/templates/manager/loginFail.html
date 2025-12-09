@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	    html, body {
+      height: 100%;
+      margin: 0;
+    }
+
+    .center-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100%;
+      background-color: #ffffff; /* 원하면 배경색 설정 */
+    }
+</style>
+<script type="text/javascript">
+	window.onload = function() {
+		setTimeout(function() {
+			alert("아이디 또는 비밀번호가 틀렸습니다. 다시 입력해주세요");
+			location.href = "/loginForm";	
+		},100);
+	}
+	
+</script>
+</head>
+<body>
+	<div class="center-container" onclick="location.href='index'">
+		<img src="/img/KG25.png" alt="KG25 로고" style="width: 400px;">
+	</div>
+</body>
+</html>

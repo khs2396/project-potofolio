@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script type="text/javascript"
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=3660487e94c62e33464a4e7d4fa47538&libraries=services,clusterer,drawing">
+</script>
+
+<script>   
+      var map;
+         
+   function showSection(sectionId) {
+   const sections = document.querySelectorAll("#content > div");
+   sections.forEach(div => div.style.display = "none");
+   
+   document.getElementById(sectionId).style.display = "block";
+         
+   const buttons = document.querySelectorAll(".tab-menu button");
+   buttons.forEach(btn => btn.classList.remove("active"));
+   event.target.classList.add("active");
+         
+   if (sectionId === "location") {
+      var container = document.getElementById("map");
+      var options = {
+       center: new kakao.maps.LatLng(37.50193690895535, 127.03733184764491),
+       level: 3
+       };
+       map = new kakao.maps.Map(container, options);
+             
+       var markerPosition  = new kakao.maps.LatLng(37.50193690895535, 127.03733184764491); 
+      var marker = new kakao.maps.Marker({
+      position: markerPosition
+      });
+      marker.setMap(map);
+            
+      var infowindow = new kakao.maps.InfoWindow({
+      content: "<div style='padding:2px 5px;font-size:15px;white-space:nowrap;'>GS타워 (강남구 논현로)</div>"
+      });
+      infowindow.open(map, marker);
+       }
+   }
+</script>
+<style>
+table.table {
+   width: 100%;
+   border-collapse: collapse;
+}
+
+table.table th, table.table td {
+   padding: 8px 12px;
+   text-align: center; /* 가로 중앙 정렬 */
+   vertical-align: middle; /* 세로 중앙 정렬 */
+   border: none; /* ← 테두리 없앰 */
+   background-color: transparent; /* 배경색도 제거 */
+}
+
+table.table thead {
+   background-color: #fddf83; /* table-warning 비슷하게 */
+}
+
+.logx {
+   color: black;
+   text-decoration: none;
+}
+
+.logx:hover {
+   color: blue;
+   text-decoration: underline;
+}
+
+.welcome-msg {
+   font-size: 10px;
+   margin: 0;
+   padding-top: 4px;
+   color: #555;
+}
+
+.menu-table {
+   background-color: #fffbea;
+   border-radius: 8px;
+   padding: 10px;
+   margin-bottom: 30px;
+}
+
+.menu-table td {
+   padding: 15px 10px;
+   text-align: center;
+   font-size: 14px;
+}
+
+.menu-link {
+   display: inline-block;
+   width: 100%;
+   padding: 10px;
+   border-radius: 6px;
+   background-color: #f8f9fa;
+   transition: all 0.3s ease;
+   color: #212529;
+   font-weight: 500;
+   text-decoration: none;
+}
+
+.menu-link:hover {
+   background-color: #ffd43b;
+   color: #000;
+   text-decoration: none;
+}
+
+.menu-link i {
+   margin-right: 6px;
+}
+
+.section-title {
+   font-weight: bold;
+   font-size: 16px;
+   margin-bottom: 10px;
+}
+
+.introduce-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  margin-top: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+/* 탭 버튼 */
+.tab-menu {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.tab-menu button {
+  background-color: #e0f7fa;
+  border: none;
+  border-radius: 25px;
+  padding: 10px 22px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #007bff;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.tab-menu button:hover {
+  background-color: #b2ebf2;
+  transform: translateY(-2px);
+}
+
+/* 활성화된 버튼 */
+.tab-menu button.active {
+  background-color: #007bff;
+  color: white;
+  box-shadow: 0 3px 6px rgba(0,123,255,0.3);
+}
+
+/* 콘텐츠 섹션 공통 스타일 */
+.tab-content div {
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.tab-content h2, .tab-content h3 {
+  color: #007bff;
+  margin-top: 20px;
+}
+
+.tab-content ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.tab-content li {
+  background-color: #f5f7fa;
+  padding: 8px 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+}
+
+.brand-logo {
+  display: block;
+  margin: 20px auto;
+  width: 200px;
+  border-radius: 10px;
+}
+#content p {
+  font-size: 17px;
+  line-height: 1.7;
+  color: #333;
+}
+
+#content ul li {
+  font-size: 16px;
+}
+
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2칸 */
+  gap: 20px; /* 간격 */
+  margin-top: 20px;
+}
+.work-item {
+  background-color: #f8fbff; /* 아주 밝은 하늘색 배경 */
+  border: 1px solid #d6e6f5;
+  border-radius: 10px;
+  padding: 15px 20px;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  transition: all 0.25s ease;
+}
+
+.work-item b {
+  color: #005BAC; /* KG25 브랜드 톤 블루 */
+  font-size: 17px;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 가로 2칸 */
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.value-box img {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+.timeline {
+  position: relative;
+  margin: 40px 0;
+  padding-left: 20px;
+  border-left: 3px solid #d6e6f5;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 40px;
+}
+
+/* .timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 10px;
+  width: 15px;
+  height: 15px;
+  background-color: #007bff;
+  border-radius: 50%;
+} */
+
+.timeline-year {
+  font-size: 22px;
+  font-weight: 700;
+  color: #005BAC;
+  margin-bottom: 10px;
+}
+
+.timeline-content {
+  background-color: #f8fbff;
+  border: 1px solid #d6e6f5;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.timeline-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.timeline-content li {
+  margin: 8px 0;
+  line-height: 1.6;
+  font-size: 15px;
+  color: #333;
+}
+
+.timeline-content b {
+  color: #007bff;
+  margin-right: 5px;
+}
+
+.timeline-content img {
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 15px;
+}
+</style>
+</head>
+<body>
+   <div class="container" style="width: 800px; margin: auto;">
+      <div th:replace="~{layouts/header.html}"></div>
+      <div class="menu-table">
+         <div class="section-title">🔓 일반 메뉴</div>
+         <table class="table mb-0">
+            <tr>
+               <td><th:block th:if="${session.managerId == null}">
+                     <a href="loginForm" class="menu-link"> <i
+                        class="fas fa-sign-in-alt"></i> 로그인
+                     </a>
+                  </th:block> <th:block th:if="${session.managerId != null}">
+                     <a href="logout" class="menu-link"> <i
+                        class="fas fa-sign-out-alt"></i> 로그아웃
+                     </a>
+                     <p class="welcome-msg mt-1 mb-0" style="font-size: 11px;">
+                        <th:block th:if="${session.code > 0}">
+              관리자 [[${session.managerId}]]님 환영합니다.
+            </th:block>
+                        <th:block th:if="${session.code == 0}">
+              회원 [[${session.managerId}]]님 환영합니다.
+            </th:block>
+                     </p>
+                  </th:block></td>
+               <td><a href="mapSearchForm" class="menu-link"> <i
+                     class="fas fa-map-marker-alt"></i> 점포찾기
+               </a></td>
+               <td><a href="introduceForm" class="menu-link"> <i
+                     class="fas fa-building"></i> 회사소개
+               </a></td>
+               <td><a href="noticeList" class="menu-link"> <i
+                     class="fas fa-bullhorn"></i> 공지사항
+               </a></td>
+               <td><a href="helpForm" class="menu-link"> <i
+                     class="fas fa-headset"></i> 고객센터
+               </a></td>
+            </tr>
+         </table>
+      </div>
+
+      <!-- ✨ 회사소개 섹션 시작 -->
+<div class="introduce-container">
+
+  <!-- 상단 탭 메뉴 -->
+  <div class="tab-menu">
+    <button class="active" onclick="showSection('company', event)">회사소개</button>
+    <button onclick="showSection('history', event)">연혁 타임라인</button>
+    <button onclick="showSection('location', event)">찾아오시는 길</button>
+    <button onclick="showSection('brand', event)">BI 소개</button>
+  </div>
+
+  <!-- 콘텐츠 영역 -->
+  <div id="content" class="tab-content">
+    <div id="company">
+      <p>KG25는 고객의 일상 속에서 편리함과 즐거움을 제공하는 생활형 편의점 브랜드입니다.</p>
+      <hr>
+      <h3>KG 경영이념</h3>
+      <p>고객과 함께 내일을 꿈꾸며 새로운 삶의 가치를 창조한다.</p>
+      <hr>
+      <h3>우리의 비전</h3>
+      <p>
+        우리의 비전은 <b>"고객의 모든 경험을 연결하고, 데이터로 공감하며, 상품과 서비스로 신뢰받는 플랫폼"</b> 입니다.
+      </p>
+      <br><br>
+      <h3>KG 가치관</h3>
+      <div class="values-grid">
+        <div class="value-box">
+          <img src="/img/Fair.png" alt="Fair 이미지">
+          <p>공정함을 지키고 사회와 환경에 기여합니다.</p>
+        </div>
+      
+        <div class="value-box">
+          <img src="/img/Friendly.png" alt="Friendly 이미지">
+          <p>다양성을 인정하고 서로를 존중합니다.</p>
+        </div>
+      
+        <div class="value-box">
+          <img src="/img/Fresh.png" alt="Fresh 이미지">
+          <p>창의와 도전을 장려하여 회사와 개인이 함께 성장합니다.</p>
+        </div>
+      
+        <div class="value-box">
+          <img src="/img/Fun.png" alt="Fun 이미지">
+          <p>유연하고 자율적인 환경에서 즐겁게 일합니다.</p>
+        </div>
+      </div>
+      <br><br>
+      <h3>KG 업무방식</h3>
+         <div class="work-grid">
+        <div class="work-item"><b>1. 고객 최우선</b><br>모든 생각과 의사결정의 기준은 고객입니다.</div>
+        <div class="work-item"><b>2. 트렌드 선도</b><br>트렌드를 감지하고 고객이 느끼는 차이를<br>만듭니다.</div>
+        <div class="work-item"><b>3. 최고 지향 목표 설정</b><br>적당한 타협보다 가슴 설레는 목표를<br>지향합니다.</div>
+        <div class="work-item"><b>4. 데이터 중심 의사결정</b><br>근거는 언제나 데이터로부터 찾습니다.</div>
+        <div class="work-item"><b>5. 신속한 판단과 실행</b><br>신속히 판단하고 즉시 실행합니다.</div>
+        <div class="work-item"><b>6. 적극적인 소통과 협업</b><br>소통으로 시작해서, 협업으로 완성합니다.</div>
+        <div class="work-item"><b>7. 비효율 개선</b><br>익숙한 비효율은 바로 개선합니다.</div>
+        <div class="work-item"><b>8. 기본에 충실</b><br>핵심에 다가가기 위해 본질에 집중합니다.</div>
+      </div>
+    </div>
+
+    <div id="history" style="display:none;">
+     <div class="timeline">
+       <div class="timeline-item">
+         <div class="timeline-year">2025년</div>
+         <div class="timeline-content">
+           <ul>
+             <li><b>06</b> KG25 — 태국 방콕 ‘THAIFEX 2025’ 박람회 참가</li>
+             <li><b>05</b> KG25 — PB-차별화 상품 일본 도쿄마트 수출</li>
+             <li><b>04</b> KG SHOP — ‘생유리 에디션’ 론칭</li>
+             <li><b>03</b> KG25 — ‘FC서울’ 특화 매장 오픈</li>
+             <li><b>03</b> KG25 — 베트남 하노이 진출</li>
+             <li><b>02</b> KG SHOP — 지에스 스타일(KG Style) 개최</li>
+             <li><b>01</b> KG리테일 — 통합 멤버십 ‘KG ALL’ 론칭</li>
+           </ul>
+         </div>
+       </div>
+   
+       <div class="timeline-item">
+         <div class="timeline-year">2024년</div>
+         <div class="timeline-content">
+           <ul>
+             <li><b>11</b> KG리테일 — 허서홍 신임 대표 내정</li>
+             <li><b>10</b> KG THE FRESH — 100호점 돌파</li>
+             <li><b>10</b> KG리테일 — ESG통합 ‘A+’ 등급 획득</li>
+             <li><b>09</b> KG SHOP — ‘AI 라이프스타일 커머스’ 앱 개편</li>         
+             <li><b>05</b> KG25 — 베트남 KG25 100호점 달성</li>
+             <li><b>05</b> KG25 — 300호점 돌파</li>
+             <li><b>02</b> KG리테일 — 고피자와 MOU 체결</li>         
+           </ul>
+         </div>
+       </div>
+   
+       <div class="timeline-item">
+         <div class="timeline-year">2023년</div>
+         <div class="timeline-content">
+           <ul>
+              <li><b>10</b> KG25 — 100호점 돌파</li>
+                <li><b>07</b> KG25 — 브랜드 론칭 및 1호점 오픈</li>
+                <li><b>06</b> KG25 — 모바일 멤버십 서비스 개시</li>
+                <li><b>03</b> KG25 — 오픈</li>
+           </ul>
+         </div>
+       </div>   
+     </div>
+</div>
+    <div id="location" style="display:none;">
+      <p>서울시 강남구 논현로 508 KG25 본사</p>
+      <p>대표전화: 02-012-2345</p>
+      <div id="map" style="width: 100%; height: 400px; background: #eee;"></div>
+    </div>
+
+    <div id="brand" style="display:none;">
+      <h2>BI 소개</h2>
+      <p>KG25의 로고는 <b>신뢰(Trust)</b>와 <b>혁신(Innovation)</b>을 상징합니다.</p>
+      <p>밝은 하늘색은 고객에게 ‘편안함과 신뢰’를 전달하는 KG25의 철학을 의미합니다.</p>
+      <img src="/img/KG25.png" alt="KG25 로고" class="brand-logo">
+    </div>
+  </div>
+</div>
+<!-- ✨ 회사소개 섹션 끝 -->
+
+      <div th:replace="~{layouts/footer.html}"></div>
+   </div>
+   <script th:inline="javascript">
+      const managerId = /*[[${session.managerId}]]*/null;
+   </script>
+   <script type="text/javascript" src="/js/managerScript.js">
+      
+   </script>
+</body>
+</html>
