@@ -1,0 +1,16 @@
+.app-root{min-height:100dvh;display:grid;grid-template-rows:auto 1fr auto}
+.site-header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);backdrop-filter:saturate(180%) blur(8px);background:color-mix(in oklab,var(--surface) 90%,transparent)}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 0;gap:var(--space-3);flex-wrap:wrap}
+.brand{display:inline-flex;align-items:center;gap:10px;font-weight:800;text-decoration:none;color:var(--fg)}
+.brand-logo{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:var(--brand);color:var(--brand-contrast);font-size:14px}
+.brand-text{letter-spacing:.2px}
+.nav{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nav-link{padding:8px 12px;border-radius:var(--r-md);text-decoration:none;color:var(--fg)}
+.nav-link.active,.nav-link:hover{background:var(--surface-2);border:1px solid var(--line)}
+.theme-toggle{display:inline-flex;align-items:center;gap:6px;padding:8px 10px;border-radius:var(--r-md);border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.theme-toggle:hover{background:var(--surface-2)}
+.site-footer{border-top:1px solid var(--line)}
+.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 0}
+.footer-links{display:inline-flex;gap:12px}.footer-links a{color:var(--fg-muted);text-decoration:none}.footer-links a:hover{text-decoration:underline}
+.auth-menu{display:inline-flex;gap:10px;align-items:center}.welcome{color:var(--fg-muted);font-size:.9rem}
+.nav .btn{padding:8px 12px}

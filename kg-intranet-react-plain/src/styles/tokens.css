@@ -1,0 +1,31 @@
+/* Pastel Theme (light only) */
+:root {
+  color-scheme: light;
+  /* 브랜드: 라벤더-민트 파스텔 */
+  --brand: #8bbcf2;
+  --brand-contrast: #102240;
+  --accent-1: #f7c5d8; /* 로즈 */
+  --accent-2: #b6e3d4; /* 민트 */
+  --accent-3: #f8e2a7; /* 라이트 옐로우 */
+  --accent-4: #c5c9ff; /* 라일락 */
+
+  /* 기본 리듬/섀도우/컨테이너 */
+  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-xl: 20px;
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 20px; --space-6: 24px; --space-7: 32px; --space-8: 40px;
+  --fs-xs: 12px; --fs-sm: 14px; --fs-md: 16px; --fs-lg: 18px; --fs-xl: 22px; --fs-2xl: 28px;
+  --lh: 1.55; --bw: 1px;
+  --shadow-1: 0 4px 10px rgba(16, 34, 64, 0.08);
+  --shadow-2: 0 10px 24px rgba(16, 34, 64, 0.12);
+  --shadow-3: 0 18px 36px rgba(16, 34, 64, 0.18);
+  --container: 1280px;
+
+  /* Light Pastel */
+  --bg:        #f9fbff;
+  --surface:   #ffffff;
+  --surface-2: #f2f6ff;
+  --surface-3: #eaf0ff;
+  --fg:        #13233d;
+  --fg-muted:  #5c6f8b;
+  --line:      #dce6f5;
+  --ring:      #8bbcf2;
+}

@@ -1,0 +1,110 @@
+.board-list.page {
+  width: 100%;
+  max-width: 1180px;
+  margin-inline: auto;
+}
+
+.board-list .board-actions {
+  margin-bottom: 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.board-list .page-desc {
+  color: var(--fg-muted, #666);
+  margin-top: 6px;
+}
+
+.board-list .table-wrap.modern {
+  margin-top: 12px;
+  width: 100%;
+}
+
+.board-list .board-table {
+  width: 100%;
+}
+
+.board-list .table-wrap.modern .table {
+  width: 100%;
+}
+
+.board-list .table-wrap.modern .table tbody td {
+  vertical-align: middle;
+}
+
+.board-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.board-pagination .pages {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.board-pagination .btn.sm {
+  min-width: 64px;
+  justify-content: center;
+  text-align: center;
+}
+
+.board-pagination .btn-next {
+  margin-left: 12px;
+}
+
+.board-card {
+  border: 1px solid var(--line, rgba(0,0,0,.08));
+  border-radius: 16px;
+  padding: 20px;
+  background: var(--surface, #fff);
+  box-shadow: 0 10px 25px rgba(15,23,42,.08);
+}
+
+.board-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--fg-muted, #666);
+  margin-bottom: 12px;
+}
+
+.comment-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.comment-item {
+  border: 1px solid var(--line, rgba(0,0,0,.08));
+  border-radius: 12px;
+  padding: 12px;
+  background: var(--surface, #fafafa);
+}
+
+.comment-meta {
+  font-size: 0.85rem;
+  color: var(--fg-muted, #666);
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.comment-form {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.comment-form textarea {
+  min-height: 90px;
+}

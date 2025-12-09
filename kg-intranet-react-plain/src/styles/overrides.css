@@ -1,0 +1,69 @@
+/* ===== overrides.css :: v11.0.1 SKIN-LOCK (namespaced) ===== */
+.kg-skin .page .toolbar{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.kg-skin .page .toolbar .searchbar{display:flex;gap:8px;align-items:center;flex:0 1 240px;min-width:220px;white-space:nowrap}
+.kg-skin .page .toolbar .searchbar .search-input{width:100%;min-width:0}
+.kg-skin .input.sm, .kg-skin select.input.sm, .kg-skin textarea.input.sm{height:32px;padding:6px 10px;font-size:14px}
+.kg-skin .btn.sm{min-height:32px;padding:0 10px;font-size:14px}
+@media (max-width:860px){ .kg-skin .page .toolbar .searchbar{flex:1 1 100%} }
+
+.kg-skin .table-wrap.modern .table{border:0;background:transparent;border-collapse:separate;border-spacing:0 10px}
+.kg-skin .table-wrap.modern{background:transparent;border:0;overflow:auto;padding:2px 0}
+.kg-skin .table-wrap.no-scroll{overflow:visible;padding:0}
+.kg-skin .table-wrap.modern .table thead th{
+  position:sticky;top:0;z-index:1;border:0;
+  font-weight:700;font-size:var(--fs-sm);letter-spacing:-0.01em;color:var(--fg);
+  text-align:left;padding:10px 14px;
+  border-bottom: var(--bw) solid color-mix(in srgb, var(--line), transparent 20%);
+  background:linear-gradient(to bottom,color-mix(in srgb,var(--surface-2),var(--brand) 6%),var(--surface-2));
+  backdrop-filter:saturate(120%) blur(2px);
+}
+.kg-skin .table-wrap.modern .table thead th:first-child{border-top-left-radius:12px}
+.kg-skin .table-wrap.modern .table thead th:last-child {border-top-right-radius:12px}
+
+.kg-skin .table-wrap.modern .table tbody td{background:var(--surface);
+  border:1px solid color-mix(in srgb,var(--line),transparent 20%);padding:12px 14px}
+.kg-skin .table-wrap.modern .table tbody tr td:first-child{border-top-left-radius:12px;border-bottom-left-radius:12px}
+.kg-skin .table-wrap.modern .table tbody tr td:last-child{border-top-right-radius:12px;border-bottom-right-radius:12px}
+.kg-skin .table-wrap.modern .table tbody tr{transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
+.kg-skin .table-wrap.modern .table tbody tr:hover td{background:color-mix(in srgb,var(--surface-2),var(--brand) 5%);box-shadow:0 6px 18px rgba(0,0,0,.12)}
+
+.kg-skin .col-id{width:80px}.kg-skin .col-type{width:160px}.kg-skin .col-owner{width:160px}.kg-skin .col-date{width:160px}.kg-skin .col-title{width:auto}
+.kg-skin .col-ann-id{width:60px}.kg-skin .col-ann-dept,.kg-skin .col-ann-author{width:120px}.kg-skin .col-ann-date{width:140px}.kg-skin .col-ann-views{width:80px}
+.kg-skin .col-emp-dept{width:200px}.kg-skin .col-emp-email{width:220px}.kg-skin .col-emp-phone{width:140px}.kg-skin .col-emp-loc{width:160px}.kg-skin .col-emp-status{width:120px}
+.kg-skin .col-appr-id{width:80px}.kg-skin .col-appr-requester{width:140px}.kg-skin .col-appr-state{width:180px}.kg-skin .col-appr-date{width:140px}
+
+.kg-skin .cell-ellipsis{display:block;max-width:clamp(260px,44vw,860px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.kg-skin .status-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;border:1px solid var(--line);font-size:12px;font-weight:600;line-height:1}
+.kg-skin .status-badge.is-review{background:color-mix(in srgb,var(--brand),#fff 80%);border-color:color-mix(in srgb,var(--brand),#fff 70%);color:color-mix(in srgb,var(--brand),#000 20%)}
+.kg-skin .status-badge.is-approved{background:color-mix(in srgb,#10b981,#fff 85%);border-color:color-mix(in srgb,#10b981,#fff 75%);color:#065f46}
+.kg-skin .status-badge.is-rejected{background:color-mix(in srgb,#ef4444,#fff 85%);border-color:color-mix(in srgb,#ef4444,#fff 75%);color:#7f1d1d}
+.kg-skin .status-badge.is-draft{background:color-mix(in srgb,var(--surface-2),#fff 60%);color:var(--fg-muted)}
+
+.kg-skin .flow-status{--h:6px;--w:136px;display:inline-flex;flex-direction:column;gap:6px;width:var(--w)}
+.kg-skin .flow-status .track{position:relative;height:var(--h);background:color-mix(in srgb,var(--surface-3),#fff 10%);border-radius:999px;overflow:hidden;border:1px solid color-mix(in srgb,var(--line),transparent 30%)}
+.kg-skin .flow-status .track .bar{height:100%;background:var(--brand);transition:width .18s ease}
+.kg-skin .flow-status .marks{display:flex;justify-content:space-between;font-size:11px;color:var(--fg-muted)}
+.kg-skin .flow-status .mark.done{color:color-mix(in srgb,var(--brand),#000 30%)}
+.kg-skin .flow-status .mark.active{font-weight:700;color:var(--brand)}
+.kg-skin .flow-status.is-rejected .track .bar{background:#ef4444}
+.kg-skin .flow-status .mark.reject{color:#b91c1c;font-weight:700}
+.kg-skin .flow-status.compact{--h:4px;--w:120px}
+.kg-skin .flow-status.compact .marks{font-size:10px}
+@media (max-width:860px){ .kg-skin .flow-status.compact{--w:110px} }
+
+/* header search inline */
+.header-search{
+  display:flex;
+  align-items:center;
+  gap:8px;             /* 입력-버튼 사이 간격 */
+  flex-wrap:nowrap;    /* 줄바꿈 금지 */
+  width:min(360px, 40vw);
+}
+.header-search .input{ flex:1; min-width:0; height:34px; }
+.header-search .btn{ height:34px; white-space:nowrap; }
+
+/* 좁은 화면 대응: 한 줄 유지 + 폭만 줄임 */
+@media (max-width: 900px){
+  .header-search{ width:min(260px, 60vw); }
+}
